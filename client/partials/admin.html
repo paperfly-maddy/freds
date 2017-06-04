@@ -1,0 +1,41 @@
+<div ng-controller="adminCtrl" >
+
+<h1>admin UI</h1>
+
+<div class="container" ng-if="flag">
+  <table id="cart" class="table table-hover table-condensed">
+            <thead>
+            <tr>
+              <th style="width:20%">Customer Name</th>
+              <th style="width:30%">Delivery Address</th>
+              <th style="width:20%">Order Details</th>
+              <th style="width:20%" class="text-center">Payment Details</th>
+              <th style="width:10%">Order Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="order in ordersList">
+              <td >{{order.name}}</td>
+              <td >{{order.address}}</td>
+              <td ><span ng-repeat="menu in order.orderDetails">{{menu.name}}:{{menu.quantity}}<br /> <span></td>
+              <td >Card No: {{order.cardNo}}<br />
+                Amount : {{order.amount}}<br />
+                Payment Status:{{order.paymentStatus}}</td>
+              <td><span ng-if="order.orderStatus!='pending'">{{order.orderStatus}}</span> <a ng-if="order.orderStatus=='pending'" ng-click="changeStatus(order)" class="btn btn-success btn-block">Pending <i class="fa fa-angle-right"></i></a> </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <!--<tr class="visible-xs">
+              <td class="text-center"><strong>Total 1.99</strong></td>
+            </tr>
+            <tr>
+
+              <td colspan="2" class="hidden-xs"></td>
+              <td class="hidden-xs text-center"><strong>Total :{{(menu[0].price * menu[0].quantity)+(menu[1].price * menu[1].quantity)+(menu[2].price * menu[2].quantity)+(menu[3].price * menu[3].quantity)}}</strong></td>
+              <td><a ng-click="order()" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+            </tr> -->
+          </tfoot>
+        </table>
+</div>
+</div>

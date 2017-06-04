@@ -1,0 +1,276 @@
+<div class="container" ng-controller="homeCtrl">
+
+    This is order booking page
+
+<div ng-show="!successflag">
+    <div class="container" ng-if="flag">
+    	<table id="cart" class="table table-hover table-condensed">
+        				<thead>
+    						<tr>
+    							<th style="width:50%">Menu</th>
+    							<th style="width:10%">Price</th>
+    							<th style="width:8%">Quantity</th>
+    							<th style="width:22%" class="text-center">Subtotal</th>
+    							<th style="width:10%"></th>
+    						</tr>
+    					</thead>
+    					<tbody>
+    						<tr>
+    							<td data-th="Product">
+    								<div class="row">
+    									<div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+    									<div class="col-sm-10">
+    										<h4 class="nomargin">{{menu[0].name}}</h4>
+                        <span style="color:red;" ng-if="menu[0].quantity<0">Quantity can not be negative</span>
+    										<!-- <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> -->
+    									</div>
+    								</div>
+    							</td>
+    							<td data-th="Price">{{menu[0].price}}</td>
+    							<td data-th="Quantity">
+    								<input type="number" class="form-control text-center"  ng-model="menu[0].quantity">
+    							</td>
+    							<td data-th="Subtotal" class="text-center">{{menu[0].price * menu[0].quantity}}</td>
+    						</tr>
+                <tr>
+                  <td data-th="Product">
+                    <div class="row">
+                      <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                      <div class="col-sm-10">
+                        <h4 class="nomargin">{{menu[1].name}}</h4>
+                        <span style="color:red;" ng-if="menu[1].quantity<0">Quantity can not be negative</span>
+                        <!-- <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> -->
+                      </div>
+                    </div>
+                  </td>
+                  <td data-th="Price">{{menu[1].price}}</td>
+                  <td data-th="Quantity">
+                    <input type="number" class="form-control text-center" ng-model="menu[1].quantity">
+                  </td>
+                  <td data-th="Subtotal" class="text-center">{{menu[1].price * menu[1].quantity}}</td>
+                </tr>
+                <tr>
+                  <td data-th="Product">
+                    <div class="row">
+                      <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                      <div class="col-sm-10">
+                        <h4 class="nomargin">{{menu[2].name}}</h4>
+                        <span style="color:red;" ng-if="menu[2].quantity<0">Quantity can not be negative</span>
+                        <!-- <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> -->
+                      </div>
+                    </div>
+                  </td>
+                  <td data-th="Price">{{menu[2].price}}</td>
+                  <td data-th="Quantity">
+                    <input type="number" class="form-control text-center" ng-model="menu[2].quantity">
+                  </td>
+                  <td data-th="Subtotal" class="text-center">{{menu[2].price * menu[2].quantity}}</td>
+                </tr>
+                <tr>
+                  <td data-th="Product">
+                    <div class="row">
+                      <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                      <div class="col-sm-10">
+                        <h4 class="nomargin">{{menu[3].name}}</h4>
+                        <span style="color:red;" ng-if="menu[3].quantity<0">Quantity can not be negative</span>
+                        <!-- <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> -->
+                      </div>
+                    </div>
+                  </td>
+                  <td data-th="Price">{{menu[3].price}}</td>
+                  <td data-th="Quantity">
+                    <input type="number" class="form-control text-center" ng-model="menu[3].quantity">
+                  </td>
+                  <td data-th="Subtotal" class="text-center">{{menu[3].price * menu[3].quantity}}</td>
+                </tr>
+    					</tbody>
+    					<tfoot>
+    						<tr class="visible-xs">
+    							<td class="text-center"><strong>Total 1.99</strong></td>
+    						</tr>
+    						<tr>
+
+    							<td colspan="2" class="hidden-xs"></td>
+    							<td class="hidden-xs text-center"><strong>Total :{{(menu[0].price * menu[0].quantity)+(menu[1].price * menu[1].quantity)+(menu[2].price * menu[2].quantity)+(menu[3].price * menu[3].quantity)}}</strong></td>
+    							<td><a ng-click="order()" class="btn btn-success btn-block" ng-disabled="((menu[0].price * menu[0].quantity)+(menu[1].price * menu[1].quantity)+(menu[2].price * menu[2].quantity)+(menu[3].price * menu[3].quantity))<1 ||menu[0].quantity<0||menu[1].quantity<0||menu[2].quantity<0||menu[3].quantity<0">Checkout <i class="fa fa-angle-right"></i></a></td>
+    						</tr>
+    					</tfoot>
+    				</table>
+    </div>
+
+<div class="row" ng-show="!flag">
+<!-- You can make it whatever width you want. I'm making it full width
+on <= small devices and 4/12 page width on >= medium devices -->
+<div class="col-xs-12 col-md-4">
+
+
+<!-- CREDIT CARD FORM STARTS HERE -->
+<div class="panel panel-default credit-card-box">
+  <div class="panel-heading display-table" >
+    <div class="row display-tr" >
+      <h3 class="panel-title display-td" >Payment Details</h3>
+      <div class="display-td" >
+        <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <form name="payment" role="form" id="payment-form">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="cardNumber">CARD NUMBER</label>
+            <div class="input-group">
+                <input type="tel" class="form-control" name="cardNumber" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="paymentDetails.cardNo" placeholder="Valid Card Number" ng-minlength="15" maxlength="16" size="16" autocomplete="cc-number" ng-required autofocus />
+              <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+
+            </div>
+            <span style="color:red;" ng-if="!payment.cardNumber.$valid && paymentDetails.cardNo!=''">Card No should be 15 digit or 16 digit</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-7 col-md-7">
+          <div class="form-group">
+            <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+            <input type="text" id="dateselect" class="form-control date-picker" name="cardExpiry" placeholder="MM / YY" ng-model="paymentDetails.expiry" autocomplete="cc-exp" required />
+          </div>
+        </div>
+        <div class="col-xs-5 col-md-5 pull-right">
+          <div class="form-group">
+            <label for="cardCVC">CVV CODE</label>
+            <input type="tel" class="form-control" ng-minlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="cardCVC" placeholder="CVV" maxlength="3" size="3" ng-model="paymentDetails.cvv" autocomplete="cc-csc" ng-required />
+          </div>
+          <span style="color:red;" ng-if="!payment.cardCVC.$valid && paymentDetails.cvv!=''">CVV No should be of 3 digit</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" ng-model="paymentDetails.name"  required=""/>
+          </div>
+          <span style="color:red;" ng-if="payment.name.$touched && paymentDetails.name==''">Name cant not be blank</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="address">Delivery Address:</label>
+            <textarea class="form-control" rows="5" id="address" name="address" ng-model="paymentDetails.address" required></textarea>
+          </div>
+          <span style="color:red;" ng-if="payment.address.$touched && paymentDetails.address==''">Address cant not be blank</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success btn-lg btn-block" type="submit" ng-click="payNow()" ng-disabled="payment.$invalid">Pay Now</button>
+        </div>
+      </div>
+      <div class="row" style="display:none;">
+        <div class="col-xs-12">
+          <p class="payment-errors"></p>
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+<!-- CREDIT CARD FORM ENDS HERE -->
+  </div>
+<div class="col-xs-12 col-md-8">
+    <div class="panel panel-default credit-card-box">
+  <div class="panel-heading >
+    <div class="row display-tr">
+      <td><h3 >Order Summery: OrderNo:{{orderNo}}</h3></td>
+    </div>
+  </div>
+  <div>
+    <table id="cart" class="table table-hover table-condensed">
+              <thead>
+              <tr>
+                <th style="width:50%">Menu</th>
+                <th style="width:10%">Price</th>
+                <th style="width:8%">Quantity</th>
+                <th style="width:22%" class="text-center">Subtotal</th>
+                <th style="width:10%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                    <div class="col-sm-10">
+                      <h4 class="nomargin">{{menu[0].name}}</h4>
+                      <!-- <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> -->
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">{{menu[0].price}}</td>
+                <td data-th="Quantity">{{menu[0].quantity}}</td>
+                <td data-th="Subtotal" class="text-center">{{menu[0].price * menu[0].quantity}}</td>
+              </tr>
+              <tr>
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                    <div class="col-sm-10">
+                      <h4 class="nomargin">{{menu[1].name}}</h4>
+                      <!-- <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> -->
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">{{menu[1].price}}</td>
+                <td data-th="Quantity">{{menu[1].quantity}}</td>
+                <td data-th="Subtotal" class="text-center">{{menu[1].price * menu[1].quantity}}</td>
+              </tr>
+              <tr>
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                    <div class="col-sm-10">
+                      <h4 class="nomargin">{{menu[2].name}}</h4>
+                      <!-- <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> -->
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">{{menu[2].price}}</td>
+                <td data-th="Quantity">{{menu[2].quantity}}</td>
+                <td data-th="Subtotal" class="text-center">{{menu[2].price * menu[2].quantity}}</td>
+              </tr>
+              <tr>
+                <td data-th="Product">
+                  <div class="row">
+                    <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                    <div class="col-sm-10">
+                      <h4 class="nomargin">{{menu[3].name}}</h4>
+                      <!-- <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> -->
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">{{menu[3].price}}</td>
+                <td data-th="Quantity">{{menu[3].quantity}}</td>
+                <td data-th="Subtotal" class="text-center">{{menu[3].price * menu[3].quantity}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="visible-xs">
+                <td class="text-center"><strong>Total 1.99</strong></td>
+              </tr>
+              <tr>
+
+                <td colspan="2" class="hidden-xs"></td>
+                <td class="hidden-xs text-center"><strong>Total :{{(menu[0].price * menu[0].quantity)+(menu[1].price * menu[1].quantity)+(menu[2].price * menu[2].quantity)+(menu[3].price * menu[3].quantity)}}</strong></td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+  </div>
+</div>
+</div>
+</div>
+  <div ng-show="successflag">
+    <h2> Your order has been successfully placed </h2>
+  </div>
+  </div>

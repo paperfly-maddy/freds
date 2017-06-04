@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="foodApp">
+
+<head>
+  <title>Fred's Kitchen</title>
+  <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/lib/jquery-ui/themes/smoothness/jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+  <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+  <script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="/lib/jquery-ui/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+  <script type="text/javascript" src="/js/factory.js"></script>
+  <script type="text/javascript" src="/js/controller.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <h1>Fred's Kitchen Application</h1>
+    <hr/>
+    <div ><menu>
+      <a href="#/home">Home</a>
+      <a href="#/admin">Admin </a>
+    </menu> </div>
+    <div>
+      <ng-view></ng-view>
+  </div>
+  </div>
+
+  <!-- Live reload script -->
+  <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+
+</body>
+
+</html>
